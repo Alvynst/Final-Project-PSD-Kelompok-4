@@ -17,6 +17,7 @@ Program ini adalah program yang mampu untuk melakukan berbagai fitur dalam opera
   * Transfer Saldo ke Nasabah Lain
   * Cek Riwayat Transfer
   * Cek Riwayat Transaksi
+  * Tampil Saldo Nasabah
  
  ## Contributor
   * Ivan Luis Simarmata
