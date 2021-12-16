@@ -18,7 +18,18 @@ struct History
 {
    char nama[50];
 };
+
+struct topup
+{
+  char nama[50];
+  long int jmlh;
+};
+
+int front=-1, rear=-1;
+int front2=0, rear2=-1;
 struct History riwayat[max];
+
+int full = 999, top = -1;
 
 // function membuat/menambah node
 void createNode()
@@ -410,6 +421,58 @@ void showNode(asal)
    }
 }
 
+void historyTopup(char namatopup[50], int nominal, int cek)
+{
+   if (top==full)
+   {
+     printf("\n\t\t\t Mohon maaf history transaksi sudah penuh\n");
+   }
+
+   else
+   {
+     if (cek == 1)
+     {
+     top++;
+     strcpy(data[top].nama, namatopup);
+     data[top].jmlh = nominal;
+     }
+
+     else if (cek == 0)
+     {
+        top++;
+        strcpy(data[top].nama, namatopup);
+        data[top].jmlh = 0 - nominal;
+     }
+   }
+}
+
+void createLast()
+{
+   if (top==-1)
+   {
+     printf("\n\t\t      Mohon maaf tidak ada history Top Up\n");
+   }
+
+   else
+   {
+        printf("\n\t Nota Transaksi                 \n");
+        printf("\n\t Nama : %s\nNominal : %d", data[top].nama, data[top].jmlh);
+        top--;
+   }
+}
+
+void tampiltopup()
+{
+   if (top==-1)
+   {
+     printf("\n\t\t     Mohon maaf tidak ada history transaksi\n");
+   }
+    for (i=0;i<=top;i++)
+   {
+     printf("\n\t\t Nama : %s\t\t Nominal :%d", data[i].nama, data[i].jmlh);
+   }
+}
+
 
 int main()
 {
@@ -492,8 +555,25 @@ int main()
             showHistory();
             break;
          case 8:
-
-            break;
+            system("cls");
+            printf("\n\n===========================:::: Cek Riwayat Top Up :::::=========================\n");
+            printf("\n\t Pilih menu yang diinginkan :\n");
+            printf("\n\t\t 1. Lihat seluruh riwayat top up\n");
+            printf("\n\t\t 2. Cetak riwayat top up terakhir\n");
+            printf("\n\t Masukkan Pilihan Anda : ");
+            scanf("%d", &topup);
+        if (topup == 1)
+        {
+        system("cls");
+        printf("\n\n==========================::::: History Transaksi :::::==========================\n");
+        tampiltopup();
+        }
+        else if (topup == 2)
+        {
+         system("cls");
+         createLast();
+        }
+        break;
          case 9:
             system("cls");
             printf("\n\n===========================:::: Cek Saldo Nasabah :::::=========================\n");
