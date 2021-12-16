@@ -1,3 +1,4 @@
+//standar library C yang diperlukan pada program
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -20,7 +21,7 @@ struct History
 };
 struct History riwayat[max];
 
-// function membuat/menambah node
+// function membuat atau menambah node
 void createNode()
 {
    int nomor, saldo, pass;
@@ -108,7 +109,7 @@ void checkIdentity(asal)
    }
 }
 
-// function untuk menghapus data nasabah pada menu kedua
+// function untuk menghapus data nasabah
 void deleteData(int delete)
 {
    if (head == NULL)
@@ -174,6 +175,7 @@ void traverseNode(){
     printf("\n\n\t Total data nasabah : %d \n", jumlahnode);
 }
 
+//function untuk mengupdate data nasabah ketika top up saldo
 void updateData(int old, int new)
 {
    int urutan = 0;
@@ -211,6 +213,7 @@ void updateData(int old, int new)
    printf("\n\t\t Maaf tidak ada nasabah dengan nomor identitas %d\n", old);
 }
 
+//function untuk mengupdate data nasabah ketika menarik saldo
 void updateData2(int old, int new)
 {
    int urutan = 0;
@@ -256,6 +259,7 @@ void updateData2(int old, int new)
    printf("\n\t\t Maaf tidak ada nasabah dengan nomor identitas %d\n", old);
 }
 
+//function untuk melakukan transfer saldo ke nasabah lain
 void transferData(int asal, int tujuan, int transferData)
 {
    temp4 = head;
@@ -315,7 +319,7 @@ void transferData(int asal, int tujuan, int transferData)
    }
 }
 
-// Fungsi implementasi queue
+// function implementasi queue
 void history(char nasabah[50])
 {
    if (rear == max - 1 && front == 0 || rear + 1 == front)
@@ -344,7 +348,7 @@ void history(char nasabah[50])
    }
 }
 
-// Fungsi mencetak history
+// function mencetak history
 void showHistory()
 {
    if (front != -1)
@@ -360,7 +364,7 @@ void showHistory()
    }
 }
 
-// Function untuk cek saldo nasabah 
+// function untuk cek saldo nasabah 
 void showNode(asal)
 {
     cari = head;
