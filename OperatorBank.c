@@ -12,7 +12,7 @@ struct node
    long int nomor, saldo, pass;
    struct node *prev;
    struct node *next;
-} * head, *temp, *temp1, *temp2, *temp3, *temp4, *temp5, *hapus, *hps, *search, *tarik;
+} * head, *temp, *temp1, *temp2, *temp3, *temp4, *temp5, *hapus, *hps, *search, *tarik, *cari;
 
 struct History
 {
@@ -25,10 +25,12 @@ struct topup
   long int jmlh;
 };
 
+int pilih, pilih2, i, k;
 int front=-1, rear=-1;
 int front2=0, rear2=-1;
 struct History riwayat[max];
 
+struct topup data[20];
 int full = 999, top = -1;
 
 // function membuat/menambah node
@@ -70,52 +72,6 @@ void addData()
       temp1->next = temp;
       temp->prev = temp1;
       temp1 = temp;
-   }
-}
-
-// function untuk mengecek identitas nasabah
-void checkIdentity(asal)
-{
-   int password;
-   search = head;
-   if (head == NULL)
-   {
-      printf("\n\t\t\t    Tidak ada data nasabah\n");
-      printf("\n\t\t\t Tekan apa saja untuk kembali\n");
-      getch();
-      main();
-   }
-   while (search != NULL)
-   {
-      if (search->nomor == asal)
-      {
-         printf("\n\t\t Nama Nasabah       : %s\n", search->nama);
-         printf("\n\t\t Masukkan password  : ");
-         scanf("%d", &password);
-         if (search->pass != password)
-         {
-            printf("\n\t   Mohon maaf password salah");
-            printf("\n\t Tekan apa saja untuk kembali");
-            getch();
-            main();
-         }
-         else if ((search->pass == password))
-         {
-            printf("\n\t Login berhasil, \n");
-            return;
-         }
-      }
-      if (search->next != NULL)
-      {
-         search = search->next;
-      }
-      else
-      {
-         printf("\n\t\t\t Identitas nasabah tidak ditemukan\n");
-         printf("\n\t\t\t   Tekan apa saja untuk kembali\n");
-         getch();
-         main();
-      }
    }
 }
 
@@ -473,51 +429,126 @@ void tampiltopup()
    }
 }
 
+//function untuk mengecek identitas nasabah
+void checkIdentity(asal)
+{
+    int password;
+    search = head;
+    if(head == NULL)
+   {
+      printf("\n\t\t\t    Tidak ada data nasabah\n");
+      printf("\n\t\t\t Tekan apa saja untuk kembali\n");
+      getch();
+      main();
+   }
+
+   while(search!=NULL)
+   {
+      if(search->nomor == asal)
+      {
+         printf("\n\t\t Nama Nasabah       : %s\n", search->nama);
+         printf("\n\t\t Masukkan password  : ");
+         scanf("%d", &password);
+         if (search->pass != password)
+         {
+            printf("\n\t   Mohon maaf password salah");
+            printf("\n\t Tekan apa saja untuk kembali");
+            getch();
+            main();
+         }
+         else if ((search->pass == password))
+         {
+            printf("\n\t Login berhasil, \n");
+            return;
+         }
+      }
+      if(search->next != NULL)
+      {
+         search = search->next;
+      }
+      else
+      {
+         printf("\n\t\t\t Identitas nasabah tidak ditemukan\n");
+         printf("\n\t\t\t   Tekan apa saja untuk kembali\n");
+         getch();
+         main();
+      }
+   }
+}
+
+void checkIdentity2(asal)
+{
+    int password;
+    search = head;
+    if(head == NULL)
+   {
+      printf("\n\t  Tidak ada data nasabah");
+      printf("\n\t Tekan apa saja untuk kembali");
+      getch();
+      main();
+   }
+
+   while(search!=NULL)
+   {
+      if(search->nomor == asal)
+      {
+         printf("\n\t Identitas nasabah ditemukan atas nama %s\n", search->nama);
+         return;
+      }
+      if(search->next != NULL)
+      {
+         search = search->next;
+      }
+      else
+      {
+         printf("\n\t Identitas nasabah tidak ditemukan");
+         printf("\n\t Tekan apa saja untuk kembali");
+         getch();
+         main();
+      }
+   }
+}
 
 int main()
 {
-   int menu;
-   do
-   {
-      int menu, ulang, lama, baru, asal, transf, jumlah, del, topup;
-      do
-      {
-         system("cls");
-         printf("\n\n==========================::::: PROGRAM MENU BANK :::::==========================\n");
-         printf("\n Pilihan Menu :\n");
-         printf("\n\t 1. Tambah Data Nasabah\n");
-         printf("\n\t 2. Hapus Data Nasabah\n");
-         printf("\n\t 3. Tampilkan Data Nasabah\n");
-         printf("\n\t 4. Top Up Saldo Nasabah\n");
-         printf("\n\t 5. Tarik  Saldo Nasabah\n");
-         printf("\n\t 6. Transfer Saldo ke Nasabah Lain\n");
-         printf("\n\t 7. Cek Riwayat Transfer\n");
-         printf("\n\t 8. Cek Riwayat Topup\n");
-         printf("\n\t 9. Cek Saldo Nasabah\n");
-         printf("\n=================================================================================\n");
-         printf("\n\t Masukkan Pilihan Anda : ");
-         scanf("%d", &menu);
-
-         switch (menu)
-         {
-         case 1:
+    int menu,ulang,lama,baru,asal,transf,jumlah,del,topup;
+    do
+    {
+    system("cls");
+    printf("\n\n==========================::::: PROGRAM MENU BANK :::::==========================\n");
+    printf("\n Pilihan Menu :\n");
+    printf("\n\t 1. Tambah Data Nasabah\n");
+    printf("\n\t 2. Hapus Data Nasabah\n");
+    printf("\n\t 3. Tampilkan Data Nasabah\n");
+    printf("\n\t 4. Top Up Saldo Nasabah\n");
+    printf("\n\t 5. Tarik  Saldo Nasabah\n");
+    printf("\n\t 6. Transfer Saldo ke Nasabah Lain\n");
+    printf("\n\t 7. Cek Riwayat Transfer\n");
+    printf("\n\t 8. Cek Riwayat Transaksi\n");
+    printf("\n\t 9. Cek Saldo Nasabah\n");
+    printf("\n=================================================================================\n");
+    printf("\n\t Masukkan Pilihan Anda : ");
+    scanf("%d", &menu);
+    switch(menu)
+     {
+        case 1:
             system("cls");
             addData();
             break;
-         case 2:
+        case 2:
             system("cls");
             printf("\n\n=========================::::: Hapus Data Nasabah :::::=========================\n");
             printf("\n\t Masukkan Identitas Nasabah yang ingin Dihapus\n");
             printf("\n\t\t Nomor identitas    : ");
             scanf("%d", &del);
             checkIdentity(del);
-            deletedata(del);
+            deleteData(del);
             break;
-         case 3:
+        case 3:
             system("cls");
             traverseNode();
             break;
-         case 4:
+        case 4:
             system("cls");
             printf("\n\n========================::::: Top Up Saldo Nasabah :::::========================\n");
             printf("\n\t\t Nomor identitas  : ");
@@ -527,7 +558,7 @@ int main()
             scanf("%d", &baru);
             updateData(lama, baru);
             break;
-         case 5:
+        case 5 :
             system("cls");
             printf("\n\n=========================::::: Tarik Saldo Nasabah :::::========================\n");
             printf("\n\t\t Nomor identitas    : ");
@@ -536,7 +567,8 @@ int main()
             printf("\n\t\t Nominal yang ingin ditarik nasabah   : ");
             scanf("%d", &baru);
             updateData2(lama, baru);
-         case 6:
+        break;
+        case 6:
             system("cls");
             printf("\n\n====================::::: Transfer Saldo ke Nasabah Lain :::::===================\n");
             printf("\n\t\t Nomor identitas    : ");
@@ -549,12 +581,12 @@ int main()
             scanf("%d", &jumlah);
             transferData(asal, transf, jumlah);
             break;
-         case 7:
+        case 7:
             system("cls");
             printf("\n\n=========================:::: Cek Riwayat Transaksi :::::========================\n");
             showHistory();
             break;
-         case 8:
+        case 8:
             system("cls");
             printf("\n\n===========================:::: Cek Riwayat Top Up :::::=========================\n");
             printf("\n\t Pilih menu yang diinginkan :\n");
@@ -574,24 +606,25 @@ int main()
          createLast();
         }
         break;
-         case 9:
-            system("cls");
-            printf("\n\n===========================:::: Cek Saldo Nasabah :::::=========================\n");
-            printf("\n\t\t Nomor identitas  : ");
-            scanf("%d", &lama);
-            showNode(lama);
-            break;      
-         default:
-            printf("\n\t\t\t Mohon maaf menu yg anda pilih salah\n");
-            break;
-         }
-         printf("\n=================================================================================\n");
-         printf("\nApakah anda ingin mengulang program ? ");
-         printf("\n\t\t 1. Ya\n");
-         printf("\n\t\t 2. Tidak\n");
-         printf("\n\t Masukkan Pilihan Anda  : ");
-         scanf("%d", &ulang);
+        case 9:
+        system("cls");
+        printf("\n\n===========================:::: Cek Saldo Nasabah :::::=========================\n");
+        printf("\n\t\t Nomor identitas  : ");
+        scanf("%d", &lama);
+        showNode(lama);
+        break;
+        default:
+        printf("\n\t\t\t Mohon maaf menu yg anda pilih salah\n");
+        break;
+    }
+    printf("\n=================================================================================\n");
+    printf("\n\t Apakah anda ingin mengulang program ?\n");
+    printf("\n\t\t 1. Ya\n");
+    printf("\n\t\t 2. Tidak\n");
+    printf("\n\t Masukkan pilihan Anda : ");
+    scanf("%d", &ulang);
 
-      } while (ulang == 1);
-      return;
-   }
+    } while (ulang == 1);
+    return;
+}
+
