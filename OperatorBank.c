@@ -360,6 +360,57 @@ void showHistory()
    }
 }
 
+// Function untuk cek saldo nasabah 
+void showNode(asal)
+{
+    cari = head;
+    int password;
+    if(head == NULL)
+   {
+      printf("\n\t\t\t    Tidak ada data nasabah\n");
+      printf("\n\t\t\t Tekan apa saja untuk kembali\n");
+      getch();
+      main();
+   }
+
+   while(cari!=NULL)
+   {
+      if(cari->nomor == asal)
+      {
+         printf("\n\t\t Nama Nasabah       : %s\n", cari->nama);
+         printf("\n\t\t Masukkan password  : ");
+         scanf("%d", &password);
+         if (cari->pass != password)
+         {
+            printf("\n\t   Mohon maaf password salah");
+            printf("\n\t Tekan apa saja untuk kembali");
+            getch();
+            main();
+         }
+         else if ((cari->pass == password))
+         {
+            printf("\n\t Data Nasabah Ditemukan \n");
+            printf("\n\t\t Nama nasabah     : %s \n", cari->nama);
+            printf("\n\t\t Nomor identitas  : %d \n", cari->nomor);
+            printf("\n\t\t Saldo nasabah    : %d \n\n", cari->saldo);
+            return;
+         }
+      }
+      if(cari->next != NULL)
+      {
+         cari = cari->next;
+      }
+      else
+      {
+         printf("\n\t\t\t Identitas nasabah tidak ditemukan\n");
+         printf("\n\t\t\t   Tekan apa saja untuk kembali\n");
+         getch();
+         main();
+      }
+   }
+}
+
+
 int main()
 {
    int menu;
@@ -379,6 +430,7 @@ int main()
          printf("\n\t 6. Transfer Saldo ke Nasabah Lain\n");
          printf("\n\t 7. Cek Riwayat Transfer\n");
          printf("\n\t 8. Cek Riwayat Topup\n");
+         printf("\n\t 9. Cek Saldo Nasabah\n");
          printf("\n=================================================================================\n");
          printf("\n\t Masukkan Pilihan Anda : ");
          scanf("%d", &menu);
@@ -442,6 +494,13 @@ int main()
          case 8:
 
             break;
+         case 9:
+            system("cls");
+            printf("\n\n===========================:::: Cek Saldo Nasabah :::::=========================\n");
+            printf("\n\t\t Nomor identitas  : ");
+            scanf("%d", &lama);
+            showNode(lama);
+            break;      
          default:
             printf("\n\t\t\t Mohon maaf menu yg anda pilih salah\n");
             break;
