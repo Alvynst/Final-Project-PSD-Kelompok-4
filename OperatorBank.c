@@ -1,3 +1,4 @@
+//standar library C yang diperlukan oleh program
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -33,7 +34,7 @@ struct History riwayat[max];
 struct topup data[20];
 int full = 999, top = -1;
 
-// function membuat/menambah node
+// function membuat atau menambah node
 void createNode()
 {
    int nomor, saldo, pass;
@@ -75,7 +76,7 @@ void addData()
    }
 }
 
-// function untuk menghapus data nasabah pada menu kedua
+// function untuk menghapus data nasabah 
 void deleteData(int delete)
 {
    if (head == NULL)
@@ -141,6 +142,7 @@ void traverseNode(){
     printf("\n\n\t Total data nasabah : %d \n", jumlahnode);
 }
 
+//function untuk mengupdate data ketika nasabah melakukan top up saldo
 void updateData(int old, int new)
 {
    int urutan = 0;
@@ -178,6 +180,7 @@ void updateData(int old, int new)
    printf("\n\t\t Maaf tidak ada nasabah dengan nomor identitas %d\n", old);
 }
 
+//function untuk mengupdate data ketika nasabah melakukan tarik saldo
 void updateData2(int old, int new)
 {
    int urutan = 0;
@@ -223,6 +226,7 @@ void updateData2(int old, int new)
    printf("\n\t\t Maaf tidak ada nasabah dengan nomor identitas %d\n", old);
 }
 
+//function untuk mentransfer saldo antar nasabah
 void transferData(int asal, int tujuan, int transferData)
 {
    temp4 = head;
@@ -282,7 +286,7 @@ void transferData(int asal, int tujuan, int transferData)
    }
 }
 
-// Fungsi implementasi queue
+// function implementasi queue
 void history(char nasabah[50])
 {
    if (rear == max - 1 && front == 0 || rear + 1 == front)
@@ -311,7 +315,7 @@ void history(char nasabah[50])
    }
 }
 
-// Fungsi mencetak history
+// Function mencetak history
 void showHistory()
 {
    if (front != -1)
@@ -327,7 +331,7 @@ void showHistory()
    }
 }
 
-// Function untuk cek saldo nasabah 
+// function untuk cek saldo nasabah 
 void showNode(asal)
 {
     cari = head;
@@ -476,6 +480,7 @@ void checkIdentity(asal)
    }
 }
 
+//function untuk mengecek identitas nasabah ketika melakukan transfer antar nasabah
 void checkIdentity2(asal)
 {
     int password;
