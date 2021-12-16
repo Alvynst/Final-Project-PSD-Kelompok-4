@@ -378,7 +378,7 @@ int main()
          printf("\n\t 5. Tarik  Saldo Nasabah\n");
          printf("\n\t 6. Transfer Saldo ke Nasabah Lain\n");
          printf("\n\t 7. Cek Riwayat Transfer\n");
-         printf("\n\t 8. Cek Riwayat Transaksi\n");
+         printf("\n\t 8. Cek Riwayat Topup\n");
          printf("\n=================================================================================\n");
          printf("\n\t Masukkan Pilihan Anda : ");
          scanf("%d", &menu);
